@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="@color/light_blue">
+
+    <EditText
+        android:id="@+id/etBio"
+        android:hint="Tell us about yourself"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:minLines="4"
+        android:gravity="top"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/etRate"
+        android:hint="Hourly Rate (₪)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <ImageView
+        android:id="@+id/ivProfilePhoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_add_photo"
+        android:scaleType="centerCrop"
+        android:background="@drawable/image_border"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnUploadImage"
+        android:text="Upload Profile Picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btnSaveBio"
+        android:text="Save and Continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black" />
+</LinearLayout>
