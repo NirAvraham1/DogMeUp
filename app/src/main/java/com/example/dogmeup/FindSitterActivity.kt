@@ -12,13 +12,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.firebase.firestore.FirebaseFirestore
+import org.json.JSONArray
 import java.util.*
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
 
 class FindSitterActivity : AppCompatActivity() {
 
@@ -28,8 +25,7 @@ class FindSitterActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var tvEmptyMessage: TextView
     private lateinit var btnSelectDate: Button
-    private lateinit var etCityInput: EditText
-    private lateinit var btnApplyCity: Button
+    private lateinit var spinnerCity: Spinner
 
     private var userCity: String? = null
     private var locationAlreadyUsed = false
@@ -42,24 +38,28 @@ class FindSitterActivity : AppCompatActivity() {
         layoutSitterList = findViewById(R.id.lvSitters)
         tvEmptyMessage = findViewById(R.id.tvEmptyMessage)
         btnSelectDate = findViewById(R.id.btnSelectDate)
-        etCityInput = findViewById(R.id.etCityInput)
-        btnApplyCity = findViewById(R.id.btnApplyCity)
+        spinnerCity = findViewById(R.id.spinnerCity)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         db = FirebaseFirestore.getInstance()
 
-        btnSelectDate.setOnClickListener { showDatePicker() }
+        val citiesList = listOf("Select city...") + loadCitiesFromJson()
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, citiesList)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCity.adapter = spinnerAdapter
 
-        btnApplyCity.setOnClickListener {
-            val manualCity = etCityInput.text.toString().trim()
-            if (manualCity.isNotEmpty()) {
-                userCity = manualCity
-                Toast.makeText(this, "Using city: $manualCity", Toast.LENGTH_SHORT).show()
+        spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == 0) return
+                userCity = parent?.getItemAtPosition(position).toString()
+                Toast.makeText(this@FindSitterActivity, "Selected city: $userCity", Toast.LENGTH_SHORT).show()
                 loadSitters()
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
+        btnSelectDate.setOnClickListener { showDatePicker() }
         getCurrentLocation()
-
         findViewById<Button>(R.id.btnBackToHome).setOnClickListener { finish() }
     }
 
@@ -110,8 +110,6 @@ class FindSitterActivity : AppCompatActivity() {
             Toast.makeText(this, "Geocoder failed: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
@@ -212,6 +210,18 @@ class FindSitterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error loading sitters", Toast.LENGTH_SHORT).show()
                 tvEmptyMessage.visibility = View.VISIBLE
             }
+    }
+
+    private fun loadCitiesFromJson(): List<String> {
+        return try {
+            val inputStream = assets.open("cities.json")
+            val json = inputStream.bufferedReader().use { it.readText() }
+            val jsonArray = JSONArray(json)
+            List(jsonArray.length()) { i -> jsonArray.getString(i) }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Failed to load cities", Toast.LENGTH_SHORT).show()
+            emptyList()
+        }
     }
 
     override fun onRequestPermissionsResult(

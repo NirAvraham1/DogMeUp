@@ -26,15 +26,17 @@
         android:backgroundTint="@color/white"
         android:textColor="@color/black"/>
 
-    <EditText
-        android:id="@+id/etCityInput"
+    <Spinner
+        android:id="@+id/spinnerCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter city manually (optional)"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
-        android:padding="8dp"
-        android:layout_marginBottom="8dp"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        />
+
+
 
     <Button
         android:id="@+id/btnApplyCity"

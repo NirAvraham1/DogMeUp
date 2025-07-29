@@ -55,15 +55,29 @@
           android:backgroundTint="@color/white"
           android:textColor="@color/black"/>
 
-      <MultiAutoCompleteTextView
-          android:id="@+id/etCities"
+      <Button
+          android:id="@+id/btnPickCities"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:hint="Enter up to 3 cities (comma separated)"
-          android:layout_marginBottom="16dp"
-          android:inputType="text"
-          android:background="@android:drawable/edit_text"
-          android:padding="12dp" />
+          android:text="Pick Cities"
+          android:textColor="@android:color/black"
+          android:backgroundTint="@color/white"
+          android:padding="12dp"
+          android:layout_marginBottom="16dp" />
+
+
+      <TextView
+          android:id="@+id/tvSelectedCities"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text=""
+          android:textAlignment="center"
+          android:backgroundTint="@color/white"
+          android:textColor="@android:color/black"
+          android:textSize="16sp"
+          android:layout_marginBottom="16dp" />
+
+
 
       <Button
           android:id="@+id/btnSaveAvailability"

@@ -2,6 +2,7 @@ package com.example.dogmeup
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dogmeup.databinding.ActivityRegisterBinding
@@ -26,12 +27,19 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
+        // הגדרת הנראות ההתחלתית של שדה שם הכלב לפי מצב הצ'קבוקס
+        binding.editTextDogName.visibility = if (binding.cbBecomeSitter.isChecked) View.GONE else View.VISIBLE
+
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // ✅ אם המשתמש כבר מחובר – בודקים אם הוא קיים במסד נתונים
+
+        binding.cbBecomeSitter.setOnCheckedChangeListener { _, isChecked ->
+            binding.editTextDogName.visibility = if (isChecked) View.GONE else View.VISIBLE
+        }
+
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
@@ -57,9 +65,11 @@ class RegisterActivity : AppCompatActivity() {
             val fullName = binding.etFullName.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
+            val phone = binding.editTextPhone.text.toString().trim()
+            val dogName = binding.editTextDogName.text.toString().trim()
             val isSitter = binding.cbBecomeSitter.isChecked
 
-            if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -67,11 +77,16 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener { result ->
                     val userId = result.user?.uid ?: return@addOnSuccessListener
+
                     val userData = hashMapOf(
                         "fullName" to fullName,
                         "email" to email,
+                        "phone" to phone,
                         "isSitter" to isSitter
                     )
+                    if (!isSitter) {
+                        userData["dogName"] = dogName
+                    }
 
                     db.collection("users").document(userId)
                         .set(userData)
@@ -99,8 +114,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnPhoneLogin.setOnClickListener {
-            val intent = Intent(this, PhoneRegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, PhoneRegisterActivity::class.java))
         }
     }
 
@@ -131,8 +145,9 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnSuccessListener { result ->
                         val userId = result.user?.uid ?: return@addOnSuccessListener
                         val isSitter = binding.cbBecomeSitter.isChecked
+                        val phone = binding.editTextPhone.text.toString().trim()
+                        val dogName = binding.editTextDogName.text.toString().trim()
 
-                        // ✅ נבדוק אם המשתמש כבר קיים
                         db.collection("users").document(userId).get()
                             .addOnSuccessListener { document ->
                                 if (document.exists()) {
@@ -145,11 +160,16 @@ class RegisterActivity : AppCompatActivity() {
                                     startActivity(Intent(this, nextActivity))
                                     finish()
                                 } else {
-                                    // משתמש חדש – נוסיף למסד הנתונים
+                                    val fullName = account.displayName ?: ""
                                     val userData = hashMapOf(
+                                        "fullName" to fullName,
                                         "email" to (account.email ?: ""),
+                                        "phone" to phone,
                                         "isSitter" to isSitter
                                     )
+                                    if (!isSitter) {
+                                        userData["dogName"] = dogName
+                                    }
 
                                     db.collection("users").document(userId)
                                         .set(userData)

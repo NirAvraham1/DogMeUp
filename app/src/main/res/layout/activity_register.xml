@@ -18,6 +18,15 @@
             android:src="@drawable/dogmeup_logo"
             android:layout_marginBottom="24dp" />
 
+        <!-- צ'קבוקס להפוך לדוגסיטר -->
+        <CheckBox
+            android:id="@+id/cbBecomeSitter"
+            android:text="I want to offer dog sitting/walking services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#212121"
+            android:layout_marginTop="16dp" />
+
         <!-- שם מלא -->
         <EditText
             android:id="@+id/etFullName"
@@ -50,14 +59,29 @@
             android:inputType="textPassword"
             android:layout_marginTop="16dp" />
 
-        <!-- צ'קבוקס להפוך לדוגסיטר -->
-        <CheckBox
-            android:id="@+id/cbBecomeSitter"
-            android:text="I want to offer dog sitting/walking services"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#212121"
-            android:layout_marginTop="16dp" />
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:drawableStart="@android:drawable/ic_menu_call"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input" />
+
+
+        <EditText
+            android:id="@+id/editTextDogName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dog's Name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input"
+            android:visibility="gone" />
+
 
         <!-- כפתור הרשמה -->
         <Button

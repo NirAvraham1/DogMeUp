@@ -30,6 +30,18 @@
             android:layout_marginBottom="16dp" />
 
         <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:drawableStart="@android:drawable/ic_menu_call"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input" />
+
+
+        <EditText
             android:id="@+id/etEditBio"
             android:hint="Bio"
             android:minLines="3"

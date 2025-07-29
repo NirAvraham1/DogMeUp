@@ -17,12 +17,12 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var etEditFullName: EditText
     private lateinit var etEditBio: EditText
     private lateinit var btnSaveProfile: Button
-
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var storage: FirebaseStorage
-
     private var selectedImageUri: Uri? = null
+    private lateinit var etEditPhone: EditText
+
 
     companion object {
         private const val PICK_IMAGE_REQUEST = 1010
@@ -36,6 +36,7 @@ class EditProfileActivity : AppCompatActivity() {
         etEditFullName = findViewById(R.id.etEditFullName)
         etEditBio = findViewById(R.id.etEditBio)
         btnSaveProfile = findViewById(R.id.btnSaveProfile)
+        etEditPhone = findViewById(R.id.editTextPhone)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -60,6 +61,7 @@ class EditProfileActivity : AppCompatActivity() {
         db.collection("users").document(userId).get()
             .addOnSuccessListener { doc ->
                 etEditFullName.setText(doc.getString("fullName") ?: "")
+                etEditPhone.setText(doc.getString("phone") ?: "")
                 etEditBio.setText(doc.getString("bio") ?: "")
 
                 val photoUrl = doc.getString("profilePhotoUrl")
@@ -72,6 +74,7 @@ class EditProfileActivity : AppCompatActivity() {
     private fun saveProfileChanges() {
         val userId = auth.currentUser?.uid ?: return
         val fullName = etEditFullName.text.toString().trim()
+        val phone = etEditPhone.text.toString().trim()
         val bio = etEditBio.text.toString().trim()
 
         if (fullName.isEmpty()) {
@@ -81,6 +84,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         val updates = hashMapOf(
             "fullName" to fullName,
+            "phone" to phone,
             "bio" to bio
         )
 

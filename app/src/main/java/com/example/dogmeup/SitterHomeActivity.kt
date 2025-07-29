@@ -6,6 +6,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SitterHomeActivity : AppCompatActivity() {
 
@@ -51,7 +53,6 @@ class SitterHomeActivity : AppCompatActivity() {
             val intent = Intent(this, MyOrdersActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     override fun onResume() {
@@ -69,19 +70,33 @@ class SitterHomeActivity : AppCompatActivity() {
             .collection("availability")
             .get()
             .addOnSuccessListener { result ->
+
+                val sdfDateTime = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+                val now = Calendar.getInstance().time
+
                 for (doc in result) {
-                    val date = doc.getString("date") ?: "-"
-                    val start = doc.getString("startTime") ?: "-"
+                    val date = doc.getString("date") ?: continue
+                    val start = doc.getString("startTime") ?: continue
                     val end = doc.getString("endTime") ?: "-"
 
-                    val tv = TextView(this).apply {
-                        text = "🗓 $date | ⏰ $start - $end"
-                        textSize = 16f
-                        setPadding(8, 8, 8, 8)
-                        setTextColor(resources.getColor(android.R.color.black))
+                    // בדיקת האם השעה התחלתית כבר עברה
+                    val fullStart = "$date $start"
+                    val startDate = try {
+                        sdfDateTime.parse(fullStart)
+                    } catch (e: Exception) {
+                        null
                     }
 
-                    layoutAvailabilities.addView(tv)
+                    if (startDate != null && startDate.after(now)) {
+                        val tv = TextView(this).apply {
+                            text = "🗓 $date | ⏰ $start - $end"
+                            textSize = 16f
+                            setPadding(8, 8, 8, 8)
+                            setTextColor(resources.getColor(android.R.color.black))
+                        }
+
+                        layoutAvailabilities.addView(tv)
+                    }
                 }
             }
     }
