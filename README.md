@@ -2,7 +2,8 @@
 DogMeUp is a mobile app that connects dog owners with trusted dog sitters. Whether you're going on vacation or just need help for a few hours, DogMeUp helps you find a sitter nearby — quickly, easily, and securely.
 
 📱 Features
-🔐 User registration and login (Email, Google)\n
+🔐 User registration and login (Email, Google)
+
 🧑‍💼 Role-based interface: dog owners (clients) and dog sitters (service providers)
 📅 Sitters can publish their availability (date + time)
 📍 Location-aware sitter listings
