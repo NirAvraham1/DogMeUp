@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/light_blue"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <ImageView
+            android:id="@+id/ivHeaderIcon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_default_profile"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Service History"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What dog sitters wrote about your dog"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:alpha="0.7"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:alpha="0.25"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewClientHistory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
+
+    <!-- Empty state -->
+    <TextView
+        android:id="@+id/tvEmptyMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No reviews yet. Once a sitter rates a service, it will appear here."
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Back button -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
+</LinearLayout>

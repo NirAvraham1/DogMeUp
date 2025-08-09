@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0F7FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:gravity="center_horizontal">
+
+        <!-- לוגו -->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/dogmeup_logo"
+            android:layout_marginBottom="24dp" />
+
+        <!-- צ'קבוקס להפוך לדוגסיטר -->
+        <CheckBox
+            android:id="@+id/cbBecomeSitter"
+            android:text="I want to offer dog sitting/walking services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#212121"
+            android:layout_marginTop="16dp" />
+
+        <!-- שם מלא -->
+        <EditText
+            android:id="@+id/etFullName"
+            android:hint="Full Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:inputType="textPersonName" />
+
+        <!-- אימייל -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:hint="Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="16dp" />
+
+        <!-- סיסמה -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:inputType="textPassword"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:drawableStart="@android:drawable/ic_menu_call"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input" />
+
+
+        <EditText
+            android:id="@+id/editTextDogName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dog's Name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input"
+            android:visibility="gone" />
+
+
+        <!-- כפתור הרשמה -->
+        <Button
+            android:id="@+id/btnRegister"
+            android:text="Register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#2196F3"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnGoogleSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign in with Google"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#DB4437"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/btnPhoneLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign in with Phone"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
+</ScrollView>

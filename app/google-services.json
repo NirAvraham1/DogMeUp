@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "5838149166",
+    "project_id": "dogmeup-2bba7",
+    "storage_bucket": "dogmeup-2bba7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5838149166:android:6814c63ff2a2772e9eb1bf",
+        "android_client_info": {
+          "package_name": "com.example.dogmeup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5838149166-b9a2jd30tootbpepj8b8ehm0aikap9ve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dogmeup",
+            "certificate_hash": "6f3e7acac61eeb029bb30e4b0049a45a82581916"
+          }
+        },
+        {
+          "client_id": "5838149166-hmal5tipe8ljviaq9p1n00okvsbktpeh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "API KEY HERE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5838149166-hmal5tipe8ljviaq9p1n00okvsbktpeh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

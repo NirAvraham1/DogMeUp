@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/light_blue"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:text="Available Dog Sitters"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnSelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
+
+    <Spinner
+        android:id="@+id/spinnerCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:minHeight="48dp"
+        />
+
+
+    <EditText
+        android:id="@+id/etMaxPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter maximum hourly rate"
+        android:inputType="number"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btnApplyCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/lvSitters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"/>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvEmptyMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No sitters available in your area."
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="8dp"/>
+
+    <Button
+        android:id="@+id/btnBackToHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
+</LinearLayout>
