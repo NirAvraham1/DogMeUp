@@ -47,7 +47,7 @@ The app provides a smooth experience for both clients and sitters — from regis
 ---
 
 ## 📂 Project Structure (Main Modules)
-DogMeUp/
+DogMeUp
 
 ├── activities/ # All Activity screens for Client & Sitter flows
 
