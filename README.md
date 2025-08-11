@@ -49,9 +49,13 @@ The app provides a smooth experience for both clients and sitters — from regis
 ## 📂 Project Structure (Main Modules)
 DogMeUp/
 ├── activities/ # All Activity screens for Client & Sitter flows
+
 ├── adapters/ # RecyclerView adapters for lists
+
 ├── models/ # Data models for Users, Availability, Bookings, Reviews
+
 ├── utils/ # Helper classes and shared logic
+
 └── res/ # Layout XML files, drawables, and string resources
 
 
