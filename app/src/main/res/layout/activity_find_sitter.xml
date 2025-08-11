@@ -80,12 +80,5 @@
         android:visibility="gone"
         android:padding="8dp"/>
 
-    <Button
-        android:id="@+id/btnBackToHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"/>
+
 </LinearLayout>

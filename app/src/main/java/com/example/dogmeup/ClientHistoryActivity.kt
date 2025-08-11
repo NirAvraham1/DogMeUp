@@ -25,7 +25,6 @@ class ClientHistoryActivity : AppCompatActivity() {
 
         val rv = findViewById<RecyclerView>(R.id.recyclerViewClientHistory)
         val tvEmpty = findViewById<TextView>(R.id.tvEmptyMessage)
-        val btnBack = findViewById<Button>(R.id.btnBack)
 
         rv.layoutManager = LinearLayoutManager(this)
 
@@ -54,11 +53,5 @@ class ClientHistoryActivity : AppCompatActivity() {
                 rv.adapter = ReviewsAdapter(emptyList())
                 findViewById<TextView>(R.id.tvEmptyMessage).visibility = View.VISIBLE
             }
-        btnBack.setOnClickListener {
-            val intent = Intent(this, ClientHomeActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
-            finish()
-        }
     }
 }

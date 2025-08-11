@@ -68,7 +68,7 @@ class FindSitterActivity : AppCompatActivity() {
 
         btnSelectDate.setOnClickListener { showDatePicker() }
         getCurrentLocation()
-        findViewById<Button>(R.id.btnBackToHome).setOnClickListener { finish() }
+
     }
 
     private fun getCurrentLocation() {

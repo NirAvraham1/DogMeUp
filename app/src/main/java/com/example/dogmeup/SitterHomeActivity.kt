@@ -2,11 +2,11 @@ package com.example.dogmeup
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.Timestamp
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,6 +29,15 @@ class SitterHomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sitter_home)
+
+        // מוסיף padding תחתון דינמי כדי שה-Logout לא יכוסה
+        val root = findViewById<LinearLayout>(R.id.rootContainer)
+        ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val extra = (16 * resources.displayMetrics.density).toInt() // מרווח נוסף
+            v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, bars.bottom + extra)
+            insets
+        }
 
         tvWelcome = findViewById(R.id.tvWelcome)
         layoutAvailabilities = findViewById(R.id.layoutAvailabilities)
@@ -74,7 +83,6 @@ class SitterHomeActivity : AppCompatActivity() {
             loadAllPendingSitterReviews(userId)
         }
     }
-
 
     private fun loadAvailabilities(userId: String) {
         layoutAvailabilities.removeAllViews()
@@ -199,10 +207,10 @@ class SitterHomeActivity : AppCompatActivity() {
                 dialog.show()
             }
             .addOnFailureListener {
-                val fallbackName = "Client"
-                val fakeBookingDoc = booking
+                // אפשר להוסיף טיפול בשגיאה אם רוצים
             }
     }
+
     private fun autoCompletePastBookingsForSitter(sitterId: String, onDone: () -> Unit) {
         val now = com.google.firebase.Timestamp.now()
         db.collection("bookings")
@@ -218,6 +226,4 @@ class SitterHomeActivity : AppCompatActivity() {
             }
             .addOnFailureListener { onDone() }
     }
-
-
 }

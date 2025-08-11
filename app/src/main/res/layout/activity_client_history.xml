@@ -70,13 +70,5 @@
         android:padding="8dp"
         android:layout_marginTop="8dp" />
 
-    <!-- Back button -->
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"/>
+    
 </LinearLayout>
